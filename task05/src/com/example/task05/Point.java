@@ -1,5 +1,7 @@
 package com.example.task05;
 
+import java.util.Objects;
+
 /**
  * Точка в двумерном пространстве
  */
@@ -48,7 +50,7 @@ public class Point {
      */
     public double getLength(Point point) {
 
-        //throw new AssertionError();
+        Objects.requireNonNull(point);
         return Math.sqrt(Math.pow(point.x - this.x, 2) + Math.pow(point.y - this.y, 2));
     }
 

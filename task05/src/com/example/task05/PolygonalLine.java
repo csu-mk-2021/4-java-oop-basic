@@ -12,9 +12,11 @@ public class PolygonalLine {
      */
     private Vector <Point> points=new Vector<Point>();
     public void setPoints(Point[] points) {
+        Objects.requireNonNull(points);
         this.points=new Vector <Point>();
         for(int i=0;i<points.length;i++)
         {
+            Objects.requireNonNull(points[i]);
             this.points.add(new Point(points[i].getX(),points[i].getY()));
         }
 
@@ -26,6 +28,7 @@ public class PolygonalLine {
      * @param point точка, которую нужно добавить к ломаной
      */
     public void addPoint(Point point) {
+        Objects.requireNonNull(point);
         this.points.add(new Point(point.getX(),point.getY()));
     }
 
@@ -36,6 +39,7 @@ public class PolygonalLine {
      * @param y координата по оси ординат
      */
     public void addPoint(double x, double y) {
+
         this.points.add(new Point(x,y));
     }
 
