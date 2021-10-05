@@ -1,11 +1,13 @@
 package com.example.task04;
-
+import java.util.Objects;
 public class Line {
 
     private Point p1;
     private Point p2;
 
     Line(Point p1, Point p2) {
+        Objects.requireNonNull(p1);
+        Objects.requireNonNull(p2);
         this.p1 = p1;
         this.p2 = p2;
     }
@@ -19,10 +21,12 @@ public class Line {
     }
 
     public void setP1(Point p1) {
+        Objects.requireNonNull(p1);
         this.p1 = p1;
     }
 
     public void setP2(Point p2) {
+        Objects.requireNonNull(p2);
         this.p2 = p2;
     }
 
@@ -32,6 +36,7 @@ public class Line {
 
 
     public boolean isCollinearLine(Point p) {
+        Objects.requireNonNull(p);
         double m1 = ((double) (p.x - this.getP1().x) / (this.getP2().x - this.getP1().x));
         double m2 = ((double) (p.y - this.getP1().y) / (this.getP2().y - this.getP1().y));
         return m1 == m2;

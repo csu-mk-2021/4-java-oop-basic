@@ -1,5 +1,7 @@
 package com.example.task04;
 
+import java.util.Objects;
+
 public class Point {
 
 
@@ -13,6 +15,7 @@ public class Point {
 
 
     double distance(Point point) {
+        Objects.requireNonNull(point);
         return Math.sqrt(Math.pow(x - point.x, 2) + Math.pow(y - point.y, 2));
     }
 
