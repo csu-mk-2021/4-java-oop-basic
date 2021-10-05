@@ -8,7 +8,15 @@ public class TimeSpan {
     public TimeSpan(){};
 
     public TimeSpan(int hours,int minutes,int seconds){
-
+        if (hours < 0) {
+            throw new IllegalArgumentException("hours can't be negative");
+        }
+        if (minutes < 0) {
+            throw new IllegalArgumentException("minutes can't be negative");
+        }
+        if (seconds < 0) {
+            throw new IllegalArgumentException("seconds can't be negative");
+        }
         int carry=seconds/60;
         seconds%=60;
         minutes+=carry;
@@ -33,19 +41,31 @@ public class TimeSpan {
     }
 
     public void setHours(int hours){
+        if (hours < 0) {
+            throw new IllegalArgumentException("hours can't be negative");
+        }
         this.hours=hours;
     }
 
     public void setMinutes(int minutes){
+        if (minutes < 0) {
+            throw new IllegalArgumentException("minutes can't be negative");
+        }
         this.minutes=minutes;
     }
 
     public void setSeconds(int seconds){
+        if (seconds < 0) {
+            throw new IllegalArgumentException("seconds can't be negative");
+        }
         this.seconds=seconds;
     }
 
     public void add(TimeSpan time)
     {
+        if (time == null) {
+            throw new NullPointerException("time=null");
+        }
         this.normalize(this.toSeconds()-time.toSeconds());
     }
     private int toSeconds()
@@ -60,6 +80,12 @@ public class TimeSpan {
     }
     public void subtract(TimeSpan time)
     {
+        if (time == null) {
+            throw new NullPointerException("time=null");
+        }
+        if (this.toSeconds() < time.toSeconds()) {
+            throw new IllegalArgumentException("result can't be negative");
+        }
         this.normalize(this.toSeconds()-time.toSeconds());
     }
 
