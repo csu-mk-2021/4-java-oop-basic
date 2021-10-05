@@ -15,10 +15,14 @@ public class Complex {
 
 
     public Complex add(Complex complex) {
+        if(complex==null)
+            throw new NullPointerException();
         return new Complex(x + complex.x, y + complex.y);
     }
 
     public Complex mul(Complex complex) {
+            if(complex==null)
+                throw new NullPointerException();
         return new Complex(x * complex.x - y * complex.y, y * complex.x + x * complex.y);
     }
 
