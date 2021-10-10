@@ -17,6 +17,9 @@ public class Complex {
     }
 
     public Complex sum(Complex z2) {
+        if(z2 == null)
+            throw new IllegalArgumentException("z2 must be not NULL!");
+
         Complex sumRes = new Complex(
             x + z2.getX(),
             y + z2.getY()
@@ -25,6 +28,9 @@ public class Complex {
     }
 
     public Complex mul(Complex z2) {
+        if(z2 == null)
+            throw new IllegalArgumentException("z2 must be not NULL!");
+
         Complex mulRes = new Complex(
             x * z2.x - y * z2.y,
             x * z2.y + y * z2.getX()
