@@ -23,7 +23,7 @@ public class TimeSpan {
         return this;
     }
 
-    public TimeSpan substract(TimeSpan t2) {
+    public TimeSpan subtract(TimeSpan t2) {
         if(t2 == null)
             throw new IllegalArgumentException("t2 must be not NULL!");
 

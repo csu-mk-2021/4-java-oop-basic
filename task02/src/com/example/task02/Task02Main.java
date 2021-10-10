@@ -9,6 +9,6 @@ public class Task02Main {
 
     //    System.out.println((t1.substract(t2)).toString());
 
-        System.out.println(t2.substract(t1).toString());
+        System.out.println(t2.subtract(t1).toString());
     }
 }
