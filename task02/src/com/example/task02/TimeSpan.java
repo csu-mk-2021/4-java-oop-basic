@@ -52,6 +52,8 @@ public class TimeSpan {
             throw new IllegalArgumentException("minutes can't be negative");
         }
         this.minutes=minutes;
+        if(minutes>=60)
+            normalize(toSeconds());
     }
 
     public void setSeconds(int seconds){
@@ -59,6 +61,8 @@ public class TimeSpan {
             throw new IllegalArgumentException("seconds can't be negative");
         }
         this.seconds=seconds;
+        if(seconds>=60)
+            normalize(toSeconds());
     }
 
     public void add(TimeSpan time)
