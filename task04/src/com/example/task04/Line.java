@@ -6,6 +6,9 @@ public class Line {
     private Point p2;
 
     public Line(Point p1, Point p2) {
+        if (p1 == null || p2 == null) {
+            throw new NullPointerException("");
+        }
         this.p1 = p1;
         this.p2 = p2;
     }
@@ -23,6 +26,9 @@ public class Line {
     }
 
     public boolean isCollinearLine(Point p) {
+        if (p == null) {
+            throw new NullPointerException("");
+        }
         return ((p.x - this.p1.x)/(this.p2.x - this.p1.x)) == ((p.y - this.p1.y)/(this.p2.y-this.p1.y));
     }
 }
