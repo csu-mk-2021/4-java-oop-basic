@@ -2,7 +2,7 @@ package com.example.task02;
 
 public class Task02Main {
     public static void main(String[] args) {
-        TimeSpan p1 = new TimeSpan(4,-4, 16);
+        TimeSpan p1 = new TimeSpan(1,60, 0);
         String str = p1.toString();
         System.out.println(str);
         TimeSpan p2 = new TimeSpan(8, 5, 4);

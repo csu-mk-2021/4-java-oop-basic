@@ -18,24 +18,14 @@ public class TimeSpan {
     private void norm_time() {
         if (this.hour >= 0) {
             if (this.second > 59) {
-                if (this.second == 60) {
-                    this.minute++;
-                    this.second = 0;
-                } else {
-                    int dop_minute = this.second / 60;
-                    this.second = this.second % 60;
-                    this.minute = this.minute + dop_minute;
-                }
+                int dop_minute = this.second / 60;
+                this.second = this.second % 60;
+                this.minute = this.minute + dop_minute;
             }
             if (this.minute > 59) {
-                if (this.minute == 60) {
-                    this.hour++;
-                    this.minute = 0;
-                } else {
-                    int dop_hour = this.minute / 60;
-                    this.minute = this.minute % 60;
-                    this.hour = this.hour + dop_hour;
-                }
+                int dop_hour = this.minute / 60;
+                this.minute = this.minute % 60;
+                this.hour = this.hour + dop_hour;
             }
             if (this.second < 0) {
                 if (this.minute > 0) {
@@ -67,15 +57,12 @@ public class TimeSpan {
                     this.minute = this.minute % 60;
                 }
                 else {
-                    System.exit(-1);
+                    throw new IllegalArgumentException ("Что-то не так");
                 }
             }
 
         } else {
-            System.exit(-2);
-        }
-        if (this.second < 0 | this.minute < 0 | this.hour < 0){
-            System.exit(-3);
+           throw new IllegalArgumentException ("Hours cannot be negative");
         }
     }
 
@@ -101,6 +88,9 @@ public class TimeSpan {
     }
 
     public void add(TimeSpan time){
+        if (time == null) {
+            throw new NullPointerException("");
+        }
         int sec;
         int min;
         int h;
@@ -114,6 +104,9 @@ public class TimeSpan {
     }
 
     public void subtract(TimeSpan time){
+        if (time == null) {
+            throw new NullPointerException("");
+        }
         int sec;
         int min;
         int h;
@@ -125,6 +118,7 @@ public class TimeSpan {
         this.hour = this.hour - h;
         norm_time();
     }
+
     public String toString(){
         return String.format("[%d:%d:%d]", this.hour, this.minute, this.second);
     }
