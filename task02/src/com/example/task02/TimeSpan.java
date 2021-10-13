@@ -5,10 +5,16 @@ public class TimeSpan {
     private int minutes=0;
     private int seconds=0;
 
-    public TimeSpan(){};
-
     public TimeSpan(int hours,int minutes,int seconds){
-
+        if (hours < 0) {
+            throw new IllegalArgumentException("hours are negative");
+        }
+        if (minutes < 0) {
+            throw new IllegalArgumentException("minutes are negative");
+        }
+        if (seconds < 0) {
+            throw new IllegalArgumentException("seconds are negative");
+        }
         int carry=seconds/60;
         seconds%=60;
         minutes+=carry;
@@ -33,20 +39,36 @@ public class TimeSpan {
     }
 
     public void setHours(int hours){
+        if(hours<0)
+            throw new IllegalArgumentException("hours are negative");
         this.hours=hours;
     }
 
     public void setMinutes(int minutes){
+        if (minutes < 0) {
+            throw new IllegalArgumentException("minutes are negative");
+        }
         this.minutes=minutes;
+        if(minutes >= 60)
+            normalize(toSeconds());
     }
 
-    public void setSeconds(int seconds){
-        this.seconds=seconds;
-    }
-
-    public void add(TimeSpan time)
+    public void setSeconds(int seconds)
     {
-        this.normalize(this.toSeconds()-time.toSeconds());
+        if (seconds < 0) {
+            throw new IllegalArgumentException("seconds are negative");
+        }
+        this.seconds=seconds;
+        if(seconds>=60)
+            normalize(toSeconds());
+    }
+
+    public void add(TimeSpan time){
+        if (time != null) {
+            this.normalize(this.toSeconds() - time.toSeconds());
+            return;
+        }
+        throw new IllegalArgumentException("pointer is null");
     }
     private int toSeconds()
     {
@@ -58,9 +80,13 @@ public class TimeSpan {
         this.minutes = seconds / 60 % 60;
         this.hours = seconds / (60 * 60);
     }
-    public void subtract(TimeSpan time)
-    {
-        this.normalize(this.toSeconds()-time.toSeconds());
+
+    public void subtract(TimeSpan time) {
+        if (time != null ){
+            this.normalize(this.toSeconds()-time.toSeconds());
+            return;
+        }
+        throw new IllegalArgumentException("pointer is null");
     }
 
     public String toString() {
